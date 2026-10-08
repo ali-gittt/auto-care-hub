@@ -31,7 +31,7 @@ function Queue() {
   });
 
   function accept() {
-    if (!accepting || !when) return toast.error("Pick a date and time");
+    if (!accepting || !when) { toast.error("Pick a date and time"); return; }
     m.mutate(
       { id: accepting.id, patch: { status: "confirmed", scheduled_at: new Date(when).toISOString(), worker_id: user.id } },
       { onSuccess: () => { toast.success("Appointment confirmed"); setAccepting(null); setWhen(""); } },

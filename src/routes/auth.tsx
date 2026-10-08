@@ -37,7 +37,7 @@ function AuthPage() {
       : await supabase.auth.signUp({ email: f.email, password: f.password,
           options: { data: { full_name: f.name }, emailRedirectTo: `${window.location.origin}/dashboard` } });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     if (data.session) navigate({ to: "/dashboard" });
     else toast.success("Check your email to confirm your account.");
   }

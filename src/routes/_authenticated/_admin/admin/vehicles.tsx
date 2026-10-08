@@ -16,7 +16,7 @@ function Vehicles() {
   const vehicles = useMemo(() => {
     const m = new Map<string, typeof data>();
     for (const a of data) m.set(a.license_plate, [...(m.get(a.license_plate) ?? []), a]);
-    return [...m.entries()].map(([plate, list]) => ({ plate, latest: list[0], visits: list.length,
+    return [...m.entries()].map(([plate, list]) => ({ plate, latest: list[0]!, visits: list.length,
       total: list.reduce((s, a) => s + Number(a.cost ?? 0), 0) }));
   }, [data]);
 

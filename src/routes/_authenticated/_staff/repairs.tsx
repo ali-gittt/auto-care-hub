@@ -56,7 +56,7 @@ function Repairs() {
   );
 }
 
-function RepairRow({ a, worker, onSave, busy }: { a: Appointment; worker?: string; onSave: (p: Partial<Appointment>) => void; busy: boolean }) {
+function RepairRow({ a, worker, onSave, busy }: { a: Appointment; worker?: string | undefined; onSave: (p: Partial<Appointment>) => void; busy: boolean }) {
   const [cost, setCost] = useState(a.cost != null ? String(a.cost) : "");
   const next = NEXT_STATUS[a.status];
   return (
