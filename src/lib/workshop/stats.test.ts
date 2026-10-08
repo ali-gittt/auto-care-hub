@@ -43,6 +43,6 @@ describe("workshop rules", () => {
     expect(s.avgCost).toBe(150);
     expect(s.avgDurationHours).toBe(3);
     expect(s.rejected).toBe(1);
-    expect(s.workers[0].completed).toBe(2);
+    expect(s.workers[0]?.completed).toBe(2);
   });
 });

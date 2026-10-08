@@ -26,7 +26,7 @@ const fields = [
 function Book() {
   const qc = useQueryClient();
   const navigate = useNavigate();
-  const [form, setForm] = useState<Record<string, string>>({});
+  const [form, setForm] = useState<Record<(typeof fields)[number][0] | "problem_description", string>>({ first_name: "", last_name: "", vehicle_make: "", vehicle_model: "", vehicle_year: "", license_plate: "", problem_description: "" });
   const m = useMutation({
     mutationFn: () =>
       createAppointment({
@@ -49,7 +49,10 @@ function Book() {
   function submit(e: FormEvent) {
     e.preventDefault();
     const y = Number(form.vehicle_year);
-    if (!y || y < 1950 || y > new Date().getFullYear() + 1) return toast.error("Enter a valid vehicle year");
+    if (!y || y < 1950 || y > new Date().getFullYear() + 1) {
+      toast.error("Enter a valid vehicle year");
+      return;
+    }
     m.mutate();
   }
 
