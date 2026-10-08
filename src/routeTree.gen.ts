@@ -10,33 +10,199 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/_admin/route'
+import { Route as AuthenticatedStaffRouteRouteImport } from './routes/_authenticated/_staff/route'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedStaffQueueRouteImport } from './routes/_authenticated/_staff/queue'
+import { Route as AuthenticatedStaffRepairsRouteImport } from './routes/_authenticated/_staff/repairs'
+import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
+import { Route as AuthenticatedPortalBookRouteImport } from './routes/_authenticated/portal/book'
+import { Route as AuthenticatedAdminAdminIndexRouteImport } from './routes/_authenticated/_admin/admin/index'
+import { Route as AuthenticatedAdminAdminCustomersRouteImport } from './routes/_authenticated/_admin/admin/customers'
+import { Route as AuthenticatedAdminAdminPricesRouteImport } from './routes/_authenticated/_admin/admin/prices'
+import { Route as AuthenticatedAdminAdminVehiclesRouteImport } from './routes/_authenticated/_admin/admin/vehicles'
+import { Route as AuthenticatedAdminAdminWorkersRouteImport } from './routes/_authenticated/_admin/admin/workers'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminRouteRoute = AuthenticatedAdminRouteRouteImport.update({
+  id: '/_admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStaffRouteRoute = AuthenticatedStaffRouteRouteImport.update({
+  id: '/_staff',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStaffQueueRoute = AuthenticatedStaffQueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
+  getParentRoute: () => AuthenticatedStaffRouteRoute,
+} as any)
+const AuthenticatedStaffRepairsRoute =
+  AuthenticatedStaffRepairsRouteImport.update({
+    id: '/repairs',
+    path: '/repairs',
+    getParentRoute: () => AuthenticatedStaffRouteRoute,
+  } as any)
+const AuthenticatedPortalIndexRoute =
+  AuthenticatedPortalIndexRouteImport.update({
+    id: '/portal/',
+    path: '/portal/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPortalBookRoute = AuthenticatedPortalBookRouteImport.update({
+  id: '/portal/book',
+  path: '/portal/book',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminAdminIndexRoute =
+  AuthenticatedAdminAdminIndexRouteImport.update({
+    id: '/admin/',
+    path: '/admin/',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminAdminCustomersRoute =
+  AuthenticatedAdminAdminCustomersRouteImport.update({
+    id: '/admin/customers',
+    path: '/admin/customers',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminAdminPricesRoute =
+  AuthenticatedAdminAdminPricesRouteImport.update({
+    id: '/admin/prices',
+    path: '/admin/prices',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminAdminVehiclesRoute =
+  AuthenticatedAdminAdminVehiclesRouteImport.update({
+    id: '/admin/vehicles',
+    path: '/admin/vehicles',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
+const AuthenticatedAdminAdminWorkersRoute =
+  AuthenticatedAdminAdminWorkersRouteImport.update({
+    id: '/admin/workers',
+    path: '/admin/workers',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/queue': typeof AuthenticatedStaffQueueRoute
+  '/repairs': typeof AuthenticatedStaffRepairsRoute
+  '/portal/book': typeof AuthenticatedPortalBookRoute
+  '/portal/': typeof AuthenticatedPortalIndexRoute
+  '/admin/customers': typeof AuthenticatedAdminAdminCustomersRoute
+  '/admin/prices': typeof AuthenticatedAdminAdminPricesRoute
+  '/admin/vehicles': typeof AuthenticatedAdminAdminVehiclesRoute
+  '/admin/workers': typeof AuthenticatedAdminAdminWorkersRoute
+  '/admin/': typeof AuthenticatedAdminAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/queue': typeof AuthenticatedStaffQueueRoute
+  '/repairs': typeof AuthenticatedStaffRepairsRoute
+  '/portal/book': typeof AuthenticatedPortalBookRoute
+  '/portal': typeof AuthenticatedPortalIndexRoute
+  '/admin/customers': typeof AuthenticatedAdminAdminCustomersRoute
+  '/admin/prices': typeof AuthenticatedAdminAdminPricesRoute
+  '/admin/vehicles': typeof AuthenticatedAdminAdminVehiclesRoute
+  '/admin/workers': typeof AuthenticatedAdminAdminWorkersRoute
+  '/admin': typeof AuthenticatedAdminAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/_authenticated/_admin': typeof AuthenticatedAdminRouteRouteWithChildren
+  '/_authenticated/_staff': typeof AuthenticatedStaffRouteRouteWithChildren
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/_staff/queue': typeof AuthenticatedStaffQueueRoute
+  '/_authenticated/_staff/repairs': typeof AuthenticatedStaffRepairsRoute
+  '/_authenticated/portal/book': typeof AuthenticatedPortalBookRoute
+  '/_authenticated/portal/': typeof AuthenticatedPortalIndexRoute
+  '/_authenticated/_admin/admin/customers': typeof AuthenticatedAdminAdminCustomersRoute
+  '/_authenticated/_admin/admin/prices': typeof AuthenticatedAdminAdminPricesRoute
+  '/_authenticated/_admin/admin/vehicles': typeof AuthenticatedAdminAdminVehiclesRoute
+  '/_authenticated/_admin/admin/workers': typeof AuthenticatedAdminAdminWorkersRoute
+  '/_authenticated/_admin/admin/': typeof AuthenticatedAdminAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/queue'
+    | '/repairs'
+    | '/portal/book'
+    | '/portal/'
+    | '/admin/customers'
+    | '/admin/prices'
+    | '/admin/vehicles'
+    | '/admin/workers'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/queue'
+    | '/repairs'
+    | '/portal/book'
+    | '/portal'
+    | '/admin/customers'
+    | '/admin/prices'
+    | '/admin/vehicles'
+    | '/admin/workers'
+    | '/admin'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/_authenticated/_admin'
+    | '/_authenticated/_staff'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/_staff/queue'
+    | '/_authenticated/_staff/repairs'
+    | '/_authenticated/portal/book'
+    | '/_authenticated/portal/'
+    | '/_authenticated/_admin/admin/customers'
+    | '/_authenticated/_admin/admin/prices'
+    | '/_authenticated/_admin/admin/vehicles'
+    | '/_authenticated/_admin/admin/workers'
+    | '/_authenticated/_admin/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +214,169 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_admin': {
+      id: '/_authenticated/_admin'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedAdminRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_staff': {
+      id: '/_authenticated/_staff'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedStaffRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_staff/queue': {
+      id: '/_authenticated/_staff/queue'
+      path: '/queue'
+      fullPath: '/queue'
+      preLoaderRoute: typeof AuthenticatedStaffQueueRouteImport
+      parentRoute: typeof AuthenticatedStaffRouteRoute
+    }
+    '/_authenticated/_staff/repairs': {
+      id: '/_authenticated/_staff/repairs'
+      path: '/repairs'
+      fullPath: '/repairs'
+      preLoaderRoute: typeof AuthenticatedStaffRepairsRouteImport
+      parentRoute: typeof AuthenticatedStaffRouteRoute
+    }
+    '/_authenticated/portal/': {
+      id: '/_authenticated/portal/'
+      path: '/portal'
+      fullPath: '/portal/'
+      preLoaderRoute: typeof AuthenticatedPortalIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal/book': {
+      id: '/_authenticated/portal/book'
+      path: '/portal/book'
+      fullPath: '/portal/book'
+      preLoaderRoute: typeof AuthenticatedPortalBookRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_admin/admin/': {
+      id: '/_authenticated/_admin/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/_admin/admin/customers': {
+      id: '/_authenticated/_admin/admin/customers'
+      path: '/admin/customers'
+      fullPath: '/admin/customers'
+      preLoaderRoute: typeof AuthenticatedAdminAdminCustomersRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/_admin/admin/prices': {
+      id: '/_authenticated/_admin/admin/prices'
+      path: '/admin/prices'
+      fullPath: '/admin/prices'
+      preLoaderRoute: typeof AuthenticatedAdminAdminPricesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/_admin/admin/vehicles': {
+      id: '/_authenticated/_admin/admin/vehicles'
+      path: '/admin/vehicles'
+      fullPath: '/admin/vehicles'
+      preLoaderRoute: typeof AuthenticatedAdminAdminVehiclesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/_admin/admin/workers': {
+      id: '/_authenticated/_admin/admin/workers'
+      path: '/admin/workers'
+      fullPath: '/admin/workers'
+      preLoaderRoute: typeof AuthenticatedAdminAdminWorkersRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminAdminCustomersRoute: typeof AuthenticatedAdminAdminCustomersRoute
+  AuthenticatedAdminAdminPricesRoute: typeof AuthenticatedAdminAdminPricesRoute
+  AuthenticatedAdminAdminVehiclesRoute: typeof AuthenticatedAdminAdminVehiclesRoute
+  AuthenticatedAdminAdminWorkersRoute: typeof AuthenticatedAdminAdminWorkersRoute
+  AuthenticatedAdminAdminIndexRoute: typeof AuthenticatedAdminAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
+  {
+    AuthenticatedAdminAdminCustomersRoute:
+      AuthenticatedAdminAdminCustomersRoute,
+    AuthenticatedAdminAdminPricesRoute: AuthenticatedAdminAdminPricesRoute,
+    AuthenticatedAdminAdminVehiclesRoute: AuthenticatedAdminAdminVehiclesRoute,
+    AuthenticatedAdminAdminWorkersRoute: AuthenticatedAdminAdminWorkersRoute,
+    AuthenticatedAdminAdminIndexRoute: AuthenticatedAdminAdminIndexRoute,
+  }
+
+const AuthenticatedAdminRouteRouteWithChildren =
+  AuthenticatedAdminRouteRoute._addFileChildren(
+    AuthenticatedAdminRouteRouteChildren,
+  )
+
+interface AuthenticatedStaffRouteRouteChildren {
+  AuthenticatedStaffQueueRoute: typeof AuthenticatedStaffQueueRoute
+  AuthenticatedStaffRepairsRoute: typeof AuthenticatedStaffRepairsRoute
+}
+
+const AuthenticatedStaffRouteRouteChildren: AuthenticatedStaffRouteRouteChildren =
+  {
+    AuthenticatedStaffQueueRoute: AuthenticatedStaffQueueRoute,
+    AuthenticatedStaffRepairsRoute: AuthenticatedStaffRepairsRoute,
+  }
+
+const AuthenticatedStaffRouteRouteWithChildren =
+  AuthenticatedStaffRouteRoute._addFileChildren(
+    AuthenticatedStaffRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRouteRoute: typeof AuthenticatedAdminRouteRouteWithChildren
+  AuthenticatedStaffRouteRoute: typeof AuthenticatedStaffRouteRouteWithChildren
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPortalBookRoute: typeof AuthenticatedPortalBookRoute
+  AuthenticatedPortalIndexRoute: typeof AuthenticatedPortalIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRouteRoute: AuthenticatedAdminRouteRouteWithChildren,
+  AuthenticatedStaffRouteRoute: AuthenticatedStaffRouteRouteWithChildren,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPortalBookRoute: AuthenticatedPortalBookRoute,
+  AuthenticatedPortalIndexRoute: AuthenticatedPortalIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
