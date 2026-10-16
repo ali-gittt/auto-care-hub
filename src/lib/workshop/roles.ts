@@ -19,6 +19,8 @@ export function navFor(role: AppRole): NavItem[] {
   const worker: NavItem[] = [
     { to: "/queue", label: "Incoming" },
     { to: "/repairs", label: "Repairs" },
+    { to: "/ai-diagnosis", label: "AI Diagnosis" },
+    { to: "/dtc-scanner", label: "DTC Scanner" },
   ];
   if (role === "customer")
     return [

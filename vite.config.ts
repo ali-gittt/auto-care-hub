@@ -12,4 +12,17 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  vite: {
+    server: {
+      proxy: {
+        // Forward /siyara-api/* → http://127.0.0.1:8000/* in development.
+        // This avoids CORS errors without touching the SiyaraAI server.
+        "/siyara-api": {
+          target: "http://127.0.0.1:8000",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/siyara-api/, ""),
+        },
+      },
+    },
+  },
 });

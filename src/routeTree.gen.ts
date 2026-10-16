@@ -15,6 +15,8 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAdminRouteRouteImport } from './routes/_authenticated/_admin/route'
 import { Route as AuthenticatedStaffRouteRouteImport } from './routes/_authenticated/_staff/route'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedStaffAiDiagnosisRouteImport } from './routes/_authenticated/_staff/ai-diagnosis'
+import { Route as AuthenticatedStaffDtcScannerRouteImport } from './routes/_authenticated/_staff/dtc-scanner'
 import { Route as AuthenticatedStaffQueueRouteImport } from './routes/_authenticated/_staff/queue'
 import { Route as AuthenticatedStaffRepairsRouteImport } from './routes/_authenticated/_staff/repairs'
 import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal/index'
@@ -52,6 +54,18 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedStaffAiDiagnosisRoute =
+  AuthenticatedStaffAiDiagnosisRouteImport.update({
+    id: '/ai-diagnosis',
+    path: '/ai-diagnosis',
+    getParentRoute: () => AuthenticatedStaffRouteRoute,
+  } as any)
+const AuthenticatedStaffDtcScannerRoute =
+  AuthenticatedStaffDtcScannerRouteImport.update({
+    id: '/dtc-scanner',
+    path: '/dtc-scanner',
+    getParentRoute: () => AuthenticatedStaffRouteRoute,
+  } as any)
 const AuthenticatedStaffQueueRoute = AuthenticatedStaffQueueRouteImport.update({
   id: '/queue',
   path: '/queue',
@@ -109,6 +123,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/ai-diagnosis': typeof AuthenticatedStaffAiDiagnosisRoute
+  '/dtc-scanner': typeof AuthenticatedStaffDtcScannerRoute
   '/queue': typeof AuthenticatedStaffQueueRoute
   '/repairs': typeof AuthenticatedStaffRepairsRoute
   '/portal/book': typeof AuthenticatedPortalBookRoute
@@ -123,6 +139,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/ai-diagnosis': typeof AuthenticatedStaffAiDiagnosisRoute
+  '/dtc-scanner': typeof AuthenticatedStaffDtcScannerRoute
   '/queue': typeof AuthenticatedStaffQueueRoute
   '/repairs': typeof AuthenticatedStaffRepairsRoute
   '/portal/book': typeof AuthenticatedPortalBookRoute
@@ -141,6 +159,8 @@ export interface FileRoutesById {
   '/_authenticated/_admin': typeof AuthenticatedAdminRouteRouteWithChildren
   '/_authenticated/_staff': typeof AuthenticatedStaffRouteRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/_staff/ai-diagnosis': typeof AuthenticatedStaffAiDiagnosisRoute
+  '/_authenticated/_staff/dtc-scanner': typeof AuthenticatedStaffDtcScannerRoute
   '/_authenticated/_staff/queue': typeof AuthenticatedStaffQueueRoute
   '/_authenticated/_staff/repairs': typeof AuthenticatedStaffRepairsRoute
   '/_authenticated/portal/book': typeof AuthenticatedPortalBookRoute
@@ -157,6 +177,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/dashboard'
+    | '/ai-diagnosis'
+    | '/dtc-scanner'
     | '/queue'
     | '/repairs'
     | '/portal/book'
@@ -171,6 +193,8 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/dashboard'
+    | '/ai-diagnosis'
+    | '/dtc-scanner'
     | '/queue'
     | '/repairs'
     | '/portal/book'
@@ -188,6 +212,8 @@ export interface FileRouteTypes {
     | '/_authenticated/_admin'
     | '/_authenticated/_staff'
     | '/_authenticated/dashboard'
+    | '/_authenticated/_staff/ai-diagnosis'
+    | '/_authenticated/_staff/dtc-scanner'
     | '/_authenticated/_staff/queue'
     | '/_authenticated/_staff/repairs'
     | '/_authenticated/portal/book'
@@ -248,6 +274,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_staff/ai-diagnosis': {
+      id: '/_authenticated/_staff/ai-diagnosis'
+      path: '/ai-diagnosis'
+      fullPath: '/ai-diagnosis'
+      preLoaderRoute: typeof AuthenticatedStaffAiDiagnosisRouteImport
+      parentRoute: typeof AuthenticatedStaffRouteRoute
+    }
+    '/_authenticated/_staff/dtc-scanner': {
+      id: '/_authenticated/_staff/dtc-scanner'
+      path: '/dtc-scanner'
+      fullPath: '/dtc-scanner'
+      preLoaderRoute: typeof AuthenticatedStaffDtcScannerRouteImport
+      parentRoute: typeof AuthenticatedStaffRouteRoute
     }
     '/_authenticated/_staff/queue': {
       id: '/_authenticated/_staff/queue'
@@ -339,12 +379,16 @@ const AuthenticatedAdminRouteRouteWithChildren =
   )
 
 interface AuthenticatedStaffRouteRouteChildren {
+  AuthenticatedStaffAiDiagnosisRoute: typeof AuthenticatedStaffAiDiagnosisRoute
+  AuthenticatedStaffDtcScannerRoute: typeof AuthenticatedStaffDtcScannerRoute
   AuthenticatedStaffQueueRoute: typeof AuthenticatedStaffQueueRoute
   AuthenticatedStaffRepairsRoute: typeof AuthenticatedStaffRepairsRoute
 }
 
 const AuthenticatedStaffRouteRouteChildren: AuthenticatedStaffRouteRouteChildren =
   {
+    AuthenticatedStaffAiDiagnosisRoute: AuthenticatedStaffAiDiagnosisRoute,
+    AuthenticatedStaffDtcScannerRoute: AuthenticatedStaffDtcScannerRoute,
     AuthenticatedStaffQueueRoute: AuthenticatedStaffQueueRoute,
     AuthenticatedStaffRepairsRoute: AuthenticatedStaffRepairsRoute,
   }
